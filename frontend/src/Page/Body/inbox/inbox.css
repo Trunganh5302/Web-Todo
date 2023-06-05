@@ -1,0 +1,22 @@
+.container_content{
+    width: 100%;
+}
+
+.body_selection{
+    margin: 15px 40px 0 40px;
+}
+
+.wrapper {
+    height: 75px;
+    margin: 15px 40px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.right_title{
+    display: flex;
+    align-items: center;
+}
+.menu{
+    margin-left: 10px;
+}
