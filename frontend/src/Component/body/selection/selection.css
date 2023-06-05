@@ -1,0 +1,69 @@
+.btn_cancel{
+    cursor: pointer;
+}
+
+.icon-container{
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+    width: 250px;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.icon-container:hover{
+    background-color: rgb(217, 217, 217);
+}
+
+.title_section{
+    margin-left: 10px;
+}
+
+.option{
+    align-items: center;
+    margin-top: 5px;
+    display: flex;
+}
+
+.Action_add{
+    width: 262px;
+}
+
+.input_section{
+    font-size: 13px;
+    height: 23px;
+    border: 1px solid #cecece;
+    border-radius: 4px;
+    padding: 5px 0 5px 12px;
+    margin: 0;
+    width: calc(100% - 12px);
+}
+.input_section:focus {
+  outline: none;
+  border-color: #6c49a5;
+}
+
+.btn_addSecion {
+    cursor: pointer;
+    display: inline-block;
+    padding: 6px 10px;
+    background-color: #d9ced8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    /* transition: background-color 0.3s ease-in-out; */
+}
+
+
+.btn_addSecion:hover {
+  scale: 0.95;
+}
+
+.btn_addSecion.active {
+    /* Add your styles for the button when a key is pressed */
+    background-color: #6c49a5;
+  }
+
+
+.btn_cancel{
+    margin-left: 5px;
+}

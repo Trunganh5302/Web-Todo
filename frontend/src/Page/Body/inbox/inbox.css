@@ -3,6 +3,7 @@
 }
 
 .body_selection{
+    display: flex;
     margin: 15px 40px 0 40px;
 }
 
