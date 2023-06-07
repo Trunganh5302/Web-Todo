@@ -12,6 +12,7 @@
 }
 
 .containerSection{
+    position: relative;
     margin-right: 15px;
     width: 250px;
     display: flex;
@@ -56,4 +57,35 @@
 
 .titleTask{
     margin: 0 0 0 15px;
+}
+
+.boxContent{
+    content: "";
+    border-radius: 4px;
+    margin-top: 161px;
+    /* height: 199px; */
+    width: 200px;
+    background: beige;
+    position: absolute;
+    left: 30%;
+}
+
+
+.itemOption{
+    border-radius: 4px;
+    padding: 5px 15px 5px 15px;
+    cursor: pointer;
+    /* margin: 0 0 10px 20px; */
+    /* margin-left: 22px; */
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.itemOption:hover{
+    background-color: #ebebeb;
+}
+
+.textItem{
+    margin-left: 20px;
 }
