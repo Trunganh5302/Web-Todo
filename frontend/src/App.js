@@ -6,17 +6,17 @@ import axios from 'axios'
 
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/tasks')
-      .then(response => {
-        setTasks(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/tasks')
+  //     .then(response => {
+  //       setTasks(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   return (
     <Router>

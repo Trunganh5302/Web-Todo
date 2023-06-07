@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../selection/selection.css";
-import doneSeclection from "../doneSelection/doneSelection";
+import DoneSection  from "../doneSelection/doneSelection";
 
 function Selection() {
   const [showInput, setShowInput] = useState(false); // Hiển thị input mặc định ban đầu là false
   const [sectionName, setSectionName] = useState(""); // set Tên section ban đầu là rỗng
+  const [sectionList, setSectionList] = useState([]);
 
   function handleClick() { // Hàm hiển thị input khi người dùng nhập vào
     setShowInput(true); // khi này setShowInput = true và gán true cho showInput = true
@@ -24,6 +25,8 @@ function Selection() {
 
   function handleAddSection() { // hàm thêm section 
     if (sectionName.trim() !== "") {
+      setSectionList([...sectionList, sectionName]);
+      console.log(sectionList)
       // Perform the action to add the section
       console.log("Section Name:", sectionName);
     }
@@ -31,6 +34,11 @@ function Selection() {
 
   return (
     <>
+    <div className="wrapper1">
+        {sectionList.map((section, index) => (
+          <DoneSection key={index} sectionName={section} />
+        ))}
+      </div>
       {showInput ? (
         <div className="Action_add">
           <input
@@ -42,9 +50,9 @@ function Selection() {
           />
           <div className="option">
             <a
-              className={`btn_addSecion ${sectionName.trim() === "" ? "" : "active"}`} 
-              // kiểm tra từ khoảng trắng bằng trim(), nếu bằng rỗng thì ko có gì xảy ra,
-              // còn nếu nó khác rỗng thì set className = active
+              className={`btn_addSection ${
+                sectionName.trim() === "" ? "" : "active"
+              }`}
               onClick={handleAddSection}
             >
               Add Section
@@ -55,13 +63,16 @@ function Selection() {
           </div>
         </div>
       ) : (
-        <div className="icon-container" onClick={handleClick}>
+        <div className={`icon-container ${showInput ? "show-input" : ""}`} onClick={handleClick}>
           <FontAwesomeIcon icon={faPlus} style={{ color: "#b15daa" }} />
           <span className="title_section">Add section</span>
         </div>
       )}
+
+      
     </>
   );
 }
+
 
 export default Selection;

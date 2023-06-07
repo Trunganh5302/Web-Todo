@@ -3,6 +3,7 @@
 }
 
 .icon-container{
+    height: 25px;
     background-color: rgb(241, 241, 241);
     cursor: pointer;
     width: 250px;
@@ -42,7 +43,7 @@
   border-color: #6c49a5;
 }
 
-.btn_addSecion {
+.btn_addSection {
     cursor: pointer;
     display: inline-block;
     padding: 6px 10px;
@@ -54,11 +55,11 @@
 }
 
 
-.btn_addSecion:hover {
+.btn_addSection:hover {
   scale: 0.95;
 }
 
-.btn_addSecion.active {
+.btn_addSection.active {
     /* Add your styles for the button when a key is pressed */
     background-color: #6c49a5;
   }
@@ -66,4 +67,8 @@
 
 .btn_cancel{
     margin-left: 5px;
+}
+
+.wrapper1{
+    display: flex;
 }
