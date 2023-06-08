@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../doneSelection/doneSelection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,20 @@ import {
 
 function DoneSection({ sectionName }) {
   const [showBox, setShowBox] = useState(false);
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (boxRef.current && !boxRef.current.contains(event.target)) {
+        setShowBox(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   function handleToggleBox() {
     setShowBox(!showBox);
@@ -26,8 +40,7 @@ function DoneSection({ sectionName }) {
           ***
         </a>
         {showBox && (
-          <div className="overlay" onClick={handleToggleBox}>
-            <div className="boxContent">
+            <div className="boxContent" ref={boxRef}>
               <div className="itemOption">
                 <FontAwesomeIcon icon={faPenToSquare} />
                 <p className="textItem">Edit section</p>
@@ -40,9 +53,8 @@ function DoneSection({ sectionName }) {
                 <FontAwesomeIcon icon={faTrash} />
                 <p className="textItem">Delete section</p>
               </div>
-              {/* Các phần tử <a> khác */}
+              {/* Other <a> elements */}
             </div>
-          </div>
         )}
       </div>
       <div className="addTask">
