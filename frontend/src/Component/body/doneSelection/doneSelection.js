@@ -9,8 +9,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function DoneSection({ sectionName }) {
+  const [sectionName, setSectionName] = useState("");
   const [showBox, setShowBox] = useState(false);
   const boxRef = useRef(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/data")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length > 0) {
+          setSectionName(data[0].name); // Lấy name từ dữ liệu đầu tiên trong data.json
+        }
+      })
+      .catch((error) => { 
+        console.error(error);
+      });
+  }, []);
+  
 
   useEffect(() => {
     function handleClickOutside(event) {

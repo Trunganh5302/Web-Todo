@@ -13,14 +13,28 @@ app.post('/api/data', (req, res) => {
 
   if (typeof data === 'object') {
     try {
-      const jsonData = JSON.stringify(data);
-      console.log(jsonData)
-      fs.writeFile('./src/data/data.json', jsonData, (err) => {
+      fs.readFile('./src/data/data.json', 'utf8', (err, existingData) => {
         if (err) {
           console.error(err);
-          res.status(500).json({ message: 'Failed to save data' });
+          res.status(500).json({ message: 'Failed to read data' });
         } else {
-          res.json({ message: 'Data saved successfully' });
+          let jsonData = [];
+          if (existingData.trim() !== '') {
+            jsonData = JSON.parse(existingData);
+            if (!Array.isArray(jsonData)) {
+              jsonData = [];
+            }
+          }
+          jsonData.push(data);
+
+          fs.writeFile('./src/data/data.json', JSON.stringify(jsonData), (err) => {
+            if (err) {
+              console.error(err);
+              res.status(500).json({ message: 'Failed to save data' });
+            } else {
+              res.json({ message: 'Data saved successfully' });
+            }
+          });
         }
       });
     } catch (error) {
