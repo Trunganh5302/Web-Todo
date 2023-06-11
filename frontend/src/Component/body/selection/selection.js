@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import DoneSection from "../doneSelection/doneSelection";
 import "../selection/selection.css";
 
 function Selection() {
   const [showInput, setShowInput] = useState(false);
   const [sectionName, setSectionName] = useState("");
+  const [sectionNames, setSectionNames] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/data")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const names = data.map((item) => item.name);
+        setSectionNames(names);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   function handleClick() {
     setShowInput(true);
@@ -27,7 +46,7 @@ function Selection() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: { name: sectionName } }), // Send the data object with the section name
+        body: JSON.stringify({ data: { name: sectionName } }),
       })
         .then((response) => {
           if (!response.ok) {
@@ -36,20 +55,23 @@ function Selection() {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
+          setSectionNames([...sectionNames, sectionName]);
         })
         .catch((error) => {
           console.error(error);
         });
 
       setSectionName("");
-      console.log("Section Name:", sectionName);
     }
   }
 
   return (
     <>
-      <div className="wrapper1"></div>
+      <div className="wrapper1">
+        {sectionNames.map((section, index) => (
+          <DoneSection data={section} key={index} />
+        ))}
+      </div>
       {showInput ? (
         <div className="Action_add">
           <input

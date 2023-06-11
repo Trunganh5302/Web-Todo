@@ -26,13 +26,7 @@ function HomePage() {
       <div className="container">
         <Sidebar />
         <Body />
-        <button id="myButton" onClick={handleAPI}>Click</button>
-        {jsonData && (
-          <div>
-            <h2>Data from JSON:</h2>
-            <pre>{JSON.stringify(jsonData, null, 2)}</pre>
-          </div>
-        )}
+        
       </div>
     </>
   );

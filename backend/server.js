@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const fs = require('fs');
 const cors = require('cors');
+const { json } = require("body-parser");
 
 app.use(express.json());
 app.use(cors());
@@ -33,6 +34,8 @@ app.post('/api/data', (req, res) => {
               res.status(500).json({ message: 'Failed to save data' });
             } else {
               res.json({ message: 'Data saved successfully' });
+              const name = jsonData.map((item) => item.name)
+              console.log(name)
             }
           });
         }
